@@ -1,0 +1,71 @@
+ul {
+    list-style: none;
+    padding:0;
+    margin-top: 125px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    width:100%;
+    
+}
+
+h4 {
+    color:#A6A6A6;
+}
+.btnRed {
+    position: absolute;
+    width:14px;
+    height: 14px;
+    background-color: #A50021;
+    border-radius: 100%;
+    margin-left: 2%;
+
+}
+
+
+.btnRedActive {
+    border: 2px solid #A50021;
+    background-color: white;
+    width:10px;
+    height: 10px;
+}
+
+.contentNotices {
+    position: absolute;
+    z-index: 10000;
+    width: 10%;
+    text-align: center;
+    margin-left: -2%
+}
+.itemNotices {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+}
+
+
+li {
+    display: inline-block;
+    margin-left:0px;
+    width:3%;
+}
+
+ a {
+    text-decoration: none;
+    color:black;
+}
+
+
+.rotate {
+    /* Safari, Chrome */
+    -webkit-transform: rotate(-45deg);
+    /* Firefox */
+    -moz-transform: rotate(-45deg);
+    /* IE */
+    -ms-transform: rotate(-45deg);
+    /* Opera */
+    -o-transform: rotate(-45deg);
+    /* Older versions of IE */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=4);
+    /* CSS3 standard as defined here: http://www.w3.org/TR/css3-transforms/ */
+    transform: rotate(-45deg);
+    }

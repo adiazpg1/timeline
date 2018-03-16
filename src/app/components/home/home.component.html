@@ -1,6 +1,21 @@
+<ul (mouseleave)="mouseLeave()">
 
-<ul>
-  <li>
-    
+  <li *ngFor="let item of daysLine; let i = index">
+
+    <div class="contentItemLine">
+      
+      <div *ngIf="item.notices.length > 0" class="btnRed" [ngClass]="{'btnRedActive': itemSelected == i}" (mouseenter)="mouseEnter(i)">
+      </div>
+      <br>
+      <hr>
+      <h4 class="rotate">{{ item.shortName }} </h4>
+     
+      
+    </div>
+
+    <div class="contentNotices" [class.style]="'none'" *ngIf="itemSelected == i || contentSelected ">
+      <a class="itemNotices" *ngFor="let notice of item.notices" href="{{notice.link}}" target="_blank"> {{ notice.title.toUpperCase() }}
+      </a>
+    </div>
   </li>
-<ul>
+  <ul>

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.container {
+    margin-top: 30px;
+    height: 300px;
+    text-align: center;
+    background-color: #FBFCF4;
+    border: 2px solid black;
+}
+
+hr {
+}
