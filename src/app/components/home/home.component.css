@@ -69,3 +69,21 @@ li {
     /* CSS3 standard as defined here: http://www.w3.org/TR/css3-transforms/ */
     transform: rotate(-45deg);
     }
+
+    .btnNext {
+        cursor: pointer;
+        background-color: #A50021;
+        color:white;
+        font-size: 10px;
+        padding: 5px;
+        border-radius: 100%
+     }
+
+ .btnPrev {
+    cursor: pointer;
+    background-color: #A50021;
+    color:white;
+    font-size: 10px;
+    padding: 5px;
+    border-radius: 100%
+ }
