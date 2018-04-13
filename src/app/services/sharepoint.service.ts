@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Noticias } from '../interfaces/noticias';
 import 'rxJs/Rx';
 import { Months } from '../interfaces/months';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxJs/operator/map';
+import { catchError } from 'rxJs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 
 
@@ -10,7 +14,7 @@ import { Months } from '../interfaces/months';
 export class SharepointService {
 
 
-  url = '../data/data.txt';
+  url: string;
 
   meses: Months[] = [{
     'id': 0,
@@ -84,7 +88,6 @@ export class SharepointService {
   }];
 
   constructor(private _http: HttpClient) {
-
     this.url = this.getUrl();
   }
 
@@ -98,19 +101,31 @@ export class SharepointService {
     }
   }
 
-  getData() {
+  getData(): Observable<any> | any {
     // tslint:disable-next-line:whitespace
-    return this._http.get(this.url);
+    return this._http.get<any[]>(this.url)
+      .pipe(
+        catchError( err => this.handleError(err))
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let dataError: any = {
+      error: error.message,
+      friendlyMessage: 'Error al obtener data'
+    };
+    return ErrorObservable.create(dataError);
   }
 
 
-  getItems(lista: string) {
+
+  getItems(lista: string): Observable<any> {
     // tslint:disable-next-line:prefer-const
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json;odata=verbose' });
     // tslint:disable-next-line:quotemark
     // tslint:disable-next-line:prefer-const
     let url = `/_api/web/lists/GetByTitle('${lista}')/items`;
-    return this._http.get(url, { headers });
+    return this._http.get<any[]>(url, { headers });
   }
 
 }

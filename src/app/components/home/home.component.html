@@ -1,26 +1,44 @@
-<ul (mouseleave)="mouseLeave()">
-  <li>
-    <span class="btnPrev" *ngIf="currentPage > 0" (click)="slide($event,false)">
-      < </span>
-  </li>
-  <li class="animated fadeIn" *ngFor="let item of daysLine; let i = index">
+<div class="loading" *ngIf="daysLine?.length == 0 && listaNoticias.length == 0">
+  <img src="_layouts/15/images/loading16.gif">
+</div>
 
-    <div class="contentItemLine">
-
-      <div *ngIf="item.notices.length > 0" class="btnRed" [ngClass]="{'btnRedActive': itemSelected == i}" (mouseenter)="mouseEnter(i)">
+<div class="container" *ngIf="daysLine?.length > 0 && listaNoticias.length > 0">
+  <div class="siderLeft">
+      <div class="btnPrev" *ngIf="currentPage > 0" (click)="slide($event,false)">
+        <i class="left"></i>
       </div>
-      <br>
-      <hr>
-      <h4 class="rotate">{{ item.shortName }} </h4>
-    </div>
+  </div>
+  <div class="main">
 
-    <div class="contentNotices" [class.style]="'none'" *ngIf="itemSelected == i || contentSelected ">
-      <a class="itemNotices" *ngFor="let notice of item.notices" href="{{notice.link}}" target="_blank"> {{ notice.title.toUpperCase() }}
-      </a>
-    </div>
-  </li>
+    <ul (mouseleave)="mouseLeave()">
+      <li class="animated fadeIn" *ngFor="let item of daysLine; let i = index">
 
-  <li>
-  <span class="btnNext" *ngIf="currentPage < 11 " (click)="slide($event, true)"> > </span>
-  </li>
-  <ul>
+        <div class="contentItemLine">
+
+          <div *ngIf="item.notices.length > 0" class="btnRed" [ngClass]="{'btnRedActive': itemSelected == i}" (mouseenter)="mouseEnter(i)">
+            <span class="cantNotices" *ngIf="item.notices.length > 1"> {{ item.notices.length }}</span>
+          </div>
+          <br>
+          <hr class="no-seleccionable" />
+          <p class="diasText rotate no-seleccionable">
+            <b> {{ item.shortName }} </b>
+          </p>
+        </div>
+
+        <div class="contentNotices animated fadeIn" [class.style]="'none'" *ngIf="itemSelected == i || contentSelected ">
+          <a class="itemNotices" *ngFor="let notice of item.notices" href="{{notice.link}}" target="_blank">
+            {{ notice.title.length > 100 ? notice.title.substring(0,100).toUpperCase() + '...' : notice.title.toUpperCase() }}
+          </a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <div class="siderRight">
+      <div class="btnNext" *ngIf="currentPage < 11 " (click)="slide($event, true)">
+        <i class="right"></i>
+      </div>
+  </div>
+
+
+</div>

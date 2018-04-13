@@ -8,7 +8,7 @@
 	"id":1,
 	"nameMonth":"Febrero",
 	"shortNameMonth":"feb",
-	"days": 29 	
+	"days": 28	
 },{
 	"id":2,
 	"nameMonth":"Marzo",
